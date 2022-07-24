@@ -33,3 +33,15 @@ function operate(operator, num1, num2) {
             break;
     }
 }
+
+function displayNum() {
+    displayValue += this.textContent;
+    display.value = displayValue;
+}
+
+let displayValue = '';
+const numButtons = document.querySelectorAll('.num-btn');
+const display = document.querySelector('.display');
+
+numButtons.forEach((btn) => btn.addEventListener('click', displayNum))
+display.disabled = true
