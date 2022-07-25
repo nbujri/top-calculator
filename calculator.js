@@ -47,7 +47,7 @@ function clear() {
 
 function getOperator() {
     currentOperator = this.textContent;
-    num1 = parseFloat(displayValue);
+    num1 = parseFloat(display.value);
     displayValue = '';
 }
 
@@ -58,7 +58,8 @@ function displaySolution() {
         display.value = 'ERROR!';
         setTimeout(clear, 2000);
     } else {
-        display.value = operate(currentOperator, num1, num2);
+        display.value = Math.round(operate(currentOperator, num1, num2) * 100) / 100;
+        num1, num2 = null;
     }
 }
 
