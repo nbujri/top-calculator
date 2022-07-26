@@ -58,7 +58,8 @@ function displaySolution() {
         display.value = 'ERROR!';
         setTimeout(clear, 2000);
     } else {
-        display.value = Math.round(operate(currentOperator, num1, num2) * 100) / 100;
+        displayValue = Math.round(operate(currentOperator, num1, num2) * 100) / 100;
+        display.value = displayValue;
         num1, num2 = null;
     }
 }
