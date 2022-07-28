@@ -43,11 +43,23 @@ function clear() {
     displayValue = '';
     display.value = displayValue;
     currentOperator = '';
+    isChainingOp = false;
 }
 
 function getOperator() {
-    currentOperator = this.textContent;
-    num1 = parseFloat(display.value);
+    if (!isChainingOp) {
+        isChainingOp = true;
+        currentOperator = this.textContent;
+        num1 = parseFloat(display.value);
+        displayValue = '';
+    }
+    else {
+        num2 = parseFloat(display.value);
+        displayValue = Math.round(operate(currentOperator, num1, num2) * 100) / 100;
+        display.value = displayValue;
+        num1 = displayValue;
+        currentOperator = this.textContent;
+    }
     displayValue = '';
 }
 
@@ -61,12 +73,14 @@ function displaySolution() {
         displayValue = Math.round(operate(currentOperator, num1, num2) * 100) / 100;
         display.value = displayValue;
         num1, num2 = null;
+        isChainingOp = false;
     }
 }
 
 let displayValue = '';
 let currentOperator = '';
 let num1, num2;
+let isChainingOp = false;
 const numButtons = document.querySelectorAll('.num-btn');
 const display = document.querySelector('.display');
 const clearButton = document.querySelector('.clear-btn');
