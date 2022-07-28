@@ -3,3 +3,21 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.calculator {
+    max-width: 480px;
+    margin: 100px auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+}
+
+.display {
+    height: 50px;
+    grid-column: 1 / 5;
+    text-align: right;
+}
+
+.btn {
+    height: 25px;
+}
