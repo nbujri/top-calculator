@@ -44,9 +44,11 @@ function clear() {
     display.value = displayValue;
     currentOperator = '';
     isChainingOp = false;
+    decimalButton.disabled = false;
 }
 
 function getOperator() {
+    decimalButton.disabled = false;
     if (!isChainingOp) {
         isChainingOp = true;
         currentOperator = this.textContent;
@@ -65,7 +67,6 @@ function getOperator() {
 
 function displaySolution() {
     num2 = parseFloat(displayValue);
-    console.log(`${num1} ${currentOperator} ${num2}`)
     if (!currentOperator || !num1 || !num2) {
         display.value = 'ERROR!';
         setTimeout(clear, 2000);
@@ -74,6 +75,9 @@ function displaySolution() {
         display.value = displayValue;
         num1, num2 = null;
         isChainingOp = false;
+        if (displayValue.toString().includes('.')) {
+            decimalButton.disabled = true;
+        }
     }
 }
 
@@ -86,10 +90,14 @@ const display = document.querySelector('.display');
 const clearButton = document.querySelector('.clear-btn');
 const opButtons = document.querySelectorAll('.op-btn');
 const equalButton = document.querySelector('.equal-btn');
+const decimalButton = document.querySelector('.dec-btn');
 
 display.disabled = true;
 numButtons.forEach((btn) => btn.addEventListener('click', displayNum));
 opButtons.forEach((btn) => btn.addEventListener('click', getOperator))
 clearButton.addEventListener('click', clear);
 equalButton.addEventListener('click', displaySolution);
+decimalButton.addEventListener('click', function() {
+    decimalButton.disabled = true;
+})
 
